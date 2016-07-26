@@ -1,6 +1,6 @@
 {
-    "name": "morrislaptop/laravel-queue-clear",
-    "description": "Command for wiping your queues clear",
+    "name": "CuriousMindsMedia/laravel-queue-clear",
+    "description": "Command for wiping your queues clear, forked for EcommElite",
     "authors": [
         {
             "name": "Craig Morris",
