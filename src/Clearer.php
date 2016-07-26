@@ -32,7 +32,23 @@ class Clearer implements ClearerContract
 			$count++;
 		}
 
+
+		$pheanstalkInstance = \Queue::getPheanstalk();
+		while ($job = $this->tryToGetDelayed($pheanstalkInstance, $queue)) {
+			$pheanstalkInstance->delete($job);
+			$count++;
+		}
+
 		return $count;
+	}
+
+	private function tryToGetDelayed($pheanstalkInstance, $queue)
+	{
+		try {
+			return $pheanstalkInstance->peekDelayed($queue);
+		} catch (\Pheanstalk\Exception\ServerException $e) {
+			return false;
+		}
 	}
 
 }
